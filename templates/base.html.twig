@@ -4,13 +4,105 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        
         {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <link href="{{ asset('/assets/css/light-bootstrap-dashboard.css')}}" rel="stylesheet" />
+        <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet" /> 
+        <link href="{{ asset('/assets/css/demo.css') }}" rel="stylesheet" /> 
+
         {% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
+       
     </head>
     <body>
+    <div class="wrapper">
+        <div class="sidebar" data-color="blue" data-image="{{ asset('/assets/img/sidebar-2.jpg')}}">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+        Tip 2: you can also add an image using data-image tag
+     -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="http://www.creative-tim.com" class="simple-text">
+                       Gestion Commande
+                    </a>
+                </div>
+                
+                <ul class="nav">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fournisseur')}}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Fournisseurs</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ path('produit')}}">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Produits</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="#pablo">
+                                    <span class="no-icon">Log out</span>
+                            </a>
+                    </li>
+                   
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+        <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    
+                </div>
+            </nav>
+
+            <div class="content">
         {% block body %}{% endblock %}
+        
+        </div>
+
+        <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <ul class="footer-menu">
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Company
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-center">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+            </div>
+    </div>
     </body>
 </html>

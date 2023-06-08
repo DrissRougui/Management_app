@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter d'un Produit{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+		
+           
+			
+            <div class="content">
+			
+                <form action="{{ path('produitAddCheck') }}" method="post">
+					
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p id="controlesaisie" style="color:red;display:none"></p>
+                            </div>
+                        </div>
+                    </div>
+					
+                    
+
+                    
+
+
+
+
+						<div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Ajouter Produit</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="row">
+                                            
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                    <label>Nom Produit</label>
+                                                    <input type="text" name="nom" class="form-control" placeholder="{%trans%}Nom{%endtrans%}" required>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                    <label>Prix Unitaire</label>
+                                                    <input type="text" name="prixUnitaire" class="form-control" placeholder="{%trans%}Adresse{%endtrans%}" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                    <label>Reference Fournisseur</label>
+                                                    <input type="text" name="idFournisseur"  class="form-control" placeholder="" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <button type="submit" class="btn btn-info btn-fill pull-left">{%trans%}Ajouter{%endtrans%}</button>
+                                        <a class="btn btn-info btn-fill pull-right" href="{{ path('fournisseur')}}">{%trans%}Retour{%endtrans%}</a>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+						
+						
+					
+
+
+
+					
+					
+					
+                    
+					
+                    
+					<div class="clearfix"></div>
+                </form>
+				
+            </div>
+        </div>
+    </div>
+	
+	
+ 
+    {% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FournisseurController!{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="col-md-12">
+                            <div class="card card-plain table-plain-bg">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Liste des fournisseurs</h4>
+                                   
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                <a class="btn btn-info btn-fill pull-right mr-3" href="{{ path('fournisseurAdd')}}">Ajouter un fournisseur</a>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Nom</th>
+                                            <th>Adresse</th>
+                                            <th>CodePostal</th>
+                                            <th>Ville</th>
+                                        </thead>
+                                        <tbody>
+                                        <script>
+                                        function remove (id) {
+                                               document.getElementById("f"+id).remove()        
+                                        }
+                                        </script>
+                                            {% for fournisseur in fournisseurs %}
+                                            <tr id="{{"f" ~ fournisseur.getId}}">
+                                                <td>{{fournisseur.getId}}</td>
+                                                <td>{{fournisseur.getNomFournisseur}}</td>
+                                                <td>{{fournisseur.getAdresse}}</td>
+                                                <td>{{fournisseur.getCodePostal}}</td>
+                                                <td>{{fournisseur.getVille}}</td>
+                                                
+                                                <td><a href="{{path('fournisseurEdit',{'id' : fournisseur.getId} ) }}"> <i class="nc-icon nc-settings-tool-66 alert alert-primary"></i></a></td>
+                                                <td><a   onclick="remove({{fournisseur.getId}})" > <i class="nc-icon nc-simple-remove alert alert-danger"></i></a></td>
+                                               {# href="{{path('fournisseurDelete',{'id':fournisseur.getId } ) }}"  #}
+                                                
+                                                
+                                                
+                                            </tr>
+                               
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                               
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+             
+            
+            
+
+    
+</div>
+{% endblock %}

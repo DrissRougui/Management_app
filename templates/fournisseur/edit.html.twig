@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier d'un Fournisseur{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+		
+           
+			
+            <div class="content">
+			
+                <form action="{{ path('fournisseurEditCheck',{'id' : fournisseur.getId}) }}" method="post">
+					
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p id="controlesaisie" style="color:red;display:none"></p>
+                            </div>
+                        </div>
+                    </div>
+					
+                    
+
+                    
+
+
+
+
+						<div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Modifier le Fournisseur {{fournisseur.getId}}</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="row">
+                                            
+                                            <div class="col-md-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>Nom fournisseur</label>
+                                                    <input type="text" name="nom" class="form-control" value="{{fournisseur.getNomFournisseur}}" required>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="row">
+                                        <div class="col-md-4 col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>Adresse</label>
+                                                    <input type="text" name="adresse" class="form-control" value="{{fournisseur.getAdresse}}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>CodePostal</label>
+                                                    <input type="text" name="codepostal"  class="form-control" value="{{fournisseur.getCodePostal}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>Ville</label>
+                                                    <input type="text" name="ville" class="form-control" value="{{fournisseur.getVille}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <button type="submit" class="btn btn-info btn-fill pull-left">Modifier</button>
+                                        <a class="btn btn-info btn-fill pull-right" href="{{ path('fournisseur')}}">Retour</a>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+						
+						
+					
+
+
+
+					
+					
+					
+                    
+					
+                    
+					<div class="clearfix"></div>
+                </form>
+				
+            </div>
+        </div>
+    </div>
+	
+	
+ 
+    {% endblock %}
