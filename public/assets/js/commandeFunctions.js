@@ -1,4 +1,4 @@
-$(".fournisseur").change(function(e) {
+$(".fournisseur ").change(function(e) {
     
     let id=$(".fournisseur option:selected").val();
     console.log(id); 
@@ -10,4 +10,12 @@ $(".fournisseur").change(function(e) {
         console.log(response);
         }
         });
+})
+
+
+$(".quantity").each(function(e,s) {
+    line=s.getAttribute("data-line");
+    console.log(line);
+
+
 })

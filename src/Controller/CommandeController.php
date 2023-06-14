@@ -37,8 +37,8 @@ class CommandeController extends AbstractController
     public function load(Request $request){
         $idFournisseur=$request->get('id');
         $produits=$this->produitRepository->findBy(array('deleted' => null , 'id_fournisseur' => $idFournisseur));
-        $prod=$produits;
-        return new Response ($idFournisseur+5);
+        
+        return new Response ("loaded");
     }
 
     #[Route('/check' , name: 'commandeCheck')]
