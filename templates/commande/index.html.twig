@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une Commande{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+		
+           
+			
+            <div class="content">
+			
+                <form action="{{ path('commandeCheck') }}" method="post">
+					
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p id="controlesaisie" style="color:red;display:none"></p>
+                            </div>
+                        </div>
+                    </div>
+					
+                    
+
+                    
+
+
+
+
+						<div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Ajouter Commande</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        
+                                        {% for i in 1..5 %}
+
+                                        
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>Fournisseur</label>
+                                                    <select name="idFournisseur" class="form-control fournisseur" required>
+                                                        <option value="" selected disabled hidden></option>
+                                                        {% for f in fournisseurs %}
+                                                            <option value="{{f.getId}}" > {{f.getNomFournisseur}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>Produit</label>
+                                                    <select name="idProduit" class="form-control" required>
+                                                        <option value="" selected disabled hidden></option>
+                                                        {% for p in produits %}
+                                                            <option value="{{p.getId}}" > {{p.getNomProduit}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>prixUnitaire</label>
+                                                    <h4 class="from-control">300dt</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2     col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>Quantité</label>
+                                                    <input type="text" name="prixUnitaire"  class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-12 pr-1">
+                                                <div class="form-group">
+                                                    <label>Totale</label>
+                                                    <h4>300dt</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        
+                                        <button type="submit" class="btn btn-info btn-fill pull-right">Ajouter</button>
+                                        
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+						
+						
+					
+
+
+
+					
+					
+					
+                    
+					
+                    
+					<div class="clearfix"></div>
+                </form>
+				
+            </div>
+        </div>
+    </div>
+	
+	
+ <script src="{{asset('/assets/js/commandeFunctions.js')}}"></script> 
+    {% endblock %}
