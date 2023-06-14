@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         {% block stylesheets %}
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -14,7 +14,7 @@
 
         {% endblock %}
 
-       
+
     </head>
     <body>
     <div class="wrapper">
@@ -26,7 +26,7 @@
      -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
+                    <a href="#" class="simple-text">
                        Gestion Commande
                     </a>
                 </div>
@@ -45,8 +45,14 @@
                             <p>Produits</p>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ path('commande')}}">
+                            <i class="nc-icon nc-cart-simple"></i>
+                            <p>Commande</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="#pablo">
+                            <a class="nav-link" href="#">
                                     <span class="no-icon">Log out</span>
                             </a>
                     </li>
@@ -68,39 +74,7 @@
         </div>
 
         <footer class="footer">
-                <div class="container-fluid">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                        </p>
-                    </nav>
-                </div>
+                
             </footer>
             </div>
     </div>

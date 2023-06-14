@@ -29,9 +29,9 @@ class FournisseurController extends AbstractController
     public function index(): Response
     {
         
-        $fournisseursListe = $this->fournisseurRepository->findAll(array('deleted' => null), array('id' => 'DESC'));
+        $fournisseursListe = $this->fournisseurRepository->findBy(array('deleted' => null), array('id' => 'DESC'));
         return $this->render('fournisseur/index.html.twig', [
-            'controller_name' => 'FournisseurController',
+            
             'fournisseurs' => $fournisseursListe
         ]);
     }
@@ -40,7 +40,7 @@ class FournisseurController extends AbstractController
     #[Route('/add', name: 'fournisseurAdd')]
     public function add(Request $request){
         return $this->render('fournisseur/add.html.twig',[
-            'titre_page' => 'Fournisseur'
+            
         ]);
 
         
@@ -86,10 +86,20 @@ class FournisseurController extends AbstractController
 
     }
 
-    #[Route('/remove/{id}',name : 'fournisseurDelete')]
-    public function remove(Request $request,$id){
+    #[Route('/remove',name : 'fournisseurDelete')]
+    public function remove(Request $request,EntityManagerInterface $entityManager){
+        
+        
+        $fournisseurToDelete=$this->fournisseurRepository->find($request->get('id'));
+        $fournisseurToDelete->setDeleted(1);
+        $entityManager->flush();
+        
+
+        return new Response("deleted");
 
     }
+
+    
 
 
 }

@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProduitController!{% endblock %}
+{% block title %}Liste des Produits{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 
-<div class="example-wrapper">
+
+
 <div class="col-md-12">
                             <div class="card card-plain table-plain-bg">
                                 <div class="card-header ">
@@ -17,11 +14,13 @@
                                     
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
+                                <a class="btn btn-info btn-fill pull-right mr-3" href="{{ path('produitAdd')}}">Ajouter un produit</a>
                                     <table class="table table-hover">
                                         <thead>
                                             <th>ID</th>
                                             <th>Nom</th>
                                             <th>PrixUnitaire</th>
+                                            
                                             
                                         </thead>
                                         <tbody>
@@ -30,6 +29,8 @@
                                                 <td>{{produit.getId}}</td>
                                                 <td>{{produit.getNomProduit}}</td>
                                                 <td>{{produit.getPrixUnitaire}}</td>
+                                                <td><a href="{{path('produitEdit',{'id' : produit.getId} ) }}"> <i class="nc-icon nc-settings-tool-66 alert alert-primary"></i></a></td>
+                                                <td><a data-id="{{produit.getId}}" class="removable"> <i class="nc-icon nc-simple-remove alert alert-danger"></i></a></td>
                                                 
                                                 
                                             </tr>
@@ -42,13 +43,6 @@
                                
                             </div>
                            
-                        </div>
-                    </div>
-                </div>
-             
-            </div>
-            
-
-    
 </div>
+                   <script src="{{asset('/assets/js/produitFunctions.js')}}"></script> 
 {% endblock %}

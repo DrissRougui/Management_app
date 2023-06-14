@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter d'un Fournisseur{% endblock %}
+{% block title %}Ajouter un Fournisseur{% endblock %}
 
 {% block body %}
 <div class="row">
@@ -31,50 +31,48 @@
 						<div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Ajouter Fournisseur</h4>
+                                    <h4 class="card-title">Ajouter un Fournisseur</h4>
                                 </div>
                                 <div class="card-body">
                                     <form>
                                         <div class="row">
                                             
-                                            <div class="col-md-6 pr-1">
+                                            <div class="col-md-12 pr-1">
                                                 <div class="form-group">
                                                     <label>Nom fournisseur</label>
-                                                    <input type="text" name="nom" class="form-control" placeholder="{%trans%}Nom{%endtrans%}" required>
+                                                    <input type="text" name="nom" class="form-control"  required>
                                                 </div>
                                             </div>
                                             
                                         </div>
+                                        
                                         <div class="row">
-                                            <div class="col-md-6 pr-1">
+                                        <div class="col-md-4 col-sm-12 pr-1">
                                                 <div class="form-group">
                                                     <label>Adresse</label>
-                                                    <input type="text" name="adresse" class="form-control" placeholder="{%trans%}Adresse{%endtrans%}" required>
+                                                    <input type="text" name="adresse" class="form-control"  required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 pr-1">
+                                            <div class="col-md-4 col-sm-12 pr-1">
                                                 <div class="form-group">
                                                     <label>CodePostal</label>
-                                                    <input type="text" name="codepostal"  class="form-control" placeholder="{%trans%}CodePostal{%endtrans%}">
+                                                    <input type="text" name="codepostal"  class="form-control" required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 pr-1">
+                                            <div class="col-md-4 col-sm-12 pr-1">
                                                 <div class="form-group">
                                                     <label>Ville</label>
-                                                    <input type="text" name="ville" class="form-control" placeholder="{%trans%}Ville{%endtrans%}" required>
+                                                    <input type="text" name="ville" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-info btn-fill pull-left">{%trans%}Ajouter{%endtrans%}</button>
-                                        <a class="btn btn-info btn-fill pull-right" href="{{ path('fournisseur')}}">{%trans%}Retour{%endtrans%}</a>
+                                        
+                                        <button type="submit" class="btn btn-info btn-fill pull-left">Ajouter</button>
+                                        <a class="btn btn-info btn-fill pull-right" href="{{ path('fournisseur')}}">Retour</a>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>

@@ -26,7 +26,7 @@ class ProduitController extends AbstractController
     #[Route('/', name: 'produit')]
     public function index(): Response
     {
-        $produitsListe = $this->produitRepository->findAll(array('deleted' => null), array('id' => 'DESC'));
+        $produitsListe = $this->produitRepository->findBy(array('deleted' => null), array('id' => 'DESC'));
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
             'produits' => $produitsListe
@@ -35,7 +35,7 @@ class ProduitController extends AbstractController
 
     #[Route('/add', name:'produitAdd')]
     public function add(Request $request){
-        $fournisseurListe = $this->fournisseurRepository->findAll(array('deleted'=> null), array('id' => 'DESC'));
+        $fournisseurListe = $this->fournisseurRepository->findBy(array('deleted'=> null), array('id' => 'DESC'));
         return $this->render('produit/add.html.twig',[
             'titrePage' => 'Produit' ,
             'fournisseurs' => $fournisseurListe
@@ -43,7 +43,61 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/addCheck' , name:'produitAddCheck')]
-    public function addCheck(Request $request,EntityManagerInterface $entitymanager){
+    public function addCheck(Request $request,EntityManagerInterface $entityManager){
         
+        $produit = new Produit();
+        $fournisseur=$this->fournisseurRepository->find($request->get('idFournisseur'));
+
+        $produit->setNomProduit($request->get('nom'));
+        $produit->setPrixUnitaire($request->get('prixUnitaire'));
+        $produit->setIdFournisseur($fournisseur);
+
+        $entityManager->persist($produit);
+        $entityManager->flush();
+        return $this->redirectToRoute('produit',[]);
+    }
+
+
+    #[Route('/edit/{id}', name:'produitEdit')]
+    public function edit(Request $request,$id){
+
+        $produitToEdit=$this->produitRepository->find($id);
+        $fournisseurs=$this->fournisseurRepository->findBy(array('deleted'=> null), array('id' => 'DESC'));
+        $oldFournisseur=$this->fournisseurRepository->find($produitToEdit->getIdFournisseur());
+                                        
+        return $this->render('produit/edit.html.twig',[
+            'produit' => $produitToEdit,
+            'fournisseur' => $oldFournisseur,
+            'fournisseurs' => $fournisseurs
+        ]);
+
+    }
+
+    #[Route('/editCheck{id}' , name:'produitEditCheck')]
+    public function editCheck(Request $request,$id,EntityManagerInterface $entityManager){
+        $produitToEdit=$this->produitRepository->find($id);
+        $fournisseur=$this->fournisseurRepository->find($request->get('idFournisseur'));
+
+        $produitToEdit->setNomProduit($request->get('nom'));
+        $produitToEdit->setPrixUnitaire($request->get('prixUnitaire'));
+        $produitToEdit->setIdFournisseur($fournisseur);
+
+        $entityManager->flush();
+        return $this->redirectToRoute('produit',[
+            "message" => "Produit modifié"
+        ]);
+
+
+    }
+
+    #[Route('/remove' , name:'produitRemove')]
+    public function remove(Request $request,EntityManagerInterface $entityManager){
+
+        $produitToDelete=$this->produitRepository->find($request->get('id'));
+        $produitToDelete->setDeleted(1);
+
+        $entityManager->flush();
+
+        return new Response("deleted");
     }
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FournisseurController!{% endblock %}
+{% block title %}Liste des Fournisseurs{% endblock %}
 
 {% block body %}
 
@@ -24,13 +24,9 @@
                                             <th>Ville</th>
                                         </thead>
                                         <tbody>
-                                        <script>
-                                        function remove (id) {
-                                               document.getElementById("f"+id).remove()        
-                                        }
-                                        </script>
+                                        
                                             {% for fournisseur in fournisseurs %}
-                                            <tr id="{{"f" ~ fournisseur.getId}}">
+                                            <tr >
                                                 <td>{{fournisseur.getId}}</td>
                                                 <td>{{fournisseur.getNomFournisseur}}</td>
                                                 <td>{{fournisseur.getAdresse}}</td>
@@ -38,8 +34,8 @@
                                                 <td>{{fournisseur.getVille}}</td>
                                                 
                                                 <td><a href="{{path('fournisseurEdit',{'id' : fournisseur.getId} ) }}"> <i class="nc-icon nc-settings-tool-66 alert alert-primary"></i></a></td>
-                                                <td><a   onclick="remove({{fournisseur.getId}})" > <i class="nc-icon nc-simple-remove alert alert-danger"></i></a></td>
-                                               {# href="{{path('fournisseurDelete',{'id':fournisseur.getId } ) }}"  #}
+                                                <td><a data-id="{{fournisseur.getId}}" class="removable"> <i class="nc-icon nc-simple-remove alert alert-danger"></i></a></td>
+                                              
                                                 
                                                 
                                                 
@@ -60,6 +56,6 @@
             
             
 
-    
+  <script src="{{asset('/assets/js/fournisseurFunctions.js')}}"></script>  
 </div>
 {% endblock %}
