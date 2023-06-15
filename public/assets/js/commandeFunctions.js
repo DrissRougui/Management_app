@@ -28,7 +28,7 @@ $(".fournisseur").change(function(e,s) {
               })[0]
               
               
-            $(".prix[data-line="+line+"]").text(produitFound.prixUnitaire + "dt")
+            $(".prix[data-line="+line+"]").text(produitFound.prixUnitaire)
             
             
 
@@ -43,7 +43,7 @@ $(".fournisseur").change(function(e,s) {
 
             amount=parseInt($(".quantity[data-line="+line+"]").val())
             total=amount*produitFound.prixUnitaire
-            $(".total[data-line="+line+"]").text(total+"dt")
+            $(".total[data-line="+line+"]").text(total)
             
         })
 
@@ -63,9 +63,29 @@ $(".fournisseur").change(function(e,s) {
 })
 
 
-$(".quantity").each(function(e,s) {
-    line=s.getAttribute("data-line");
-    //console.log(line);
 
 
+$("#calculer").click(()=>{
+    somme=0
+    $(".total[data-line]").each((e,s)=>{
+        if(s.innerText){
+            somme+=parseFloat(s.innerText)
+        }
+        
+    })
+    if(somme<0){
+        alert("Verifier vos données");
+    }
+    else{
+        alert("Commande Valide \nle totale est : " + somme );
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/commande/check",
+            data: {id:id},
+            success: function (response) {
+            console.log(response);
+            }
+            });
+    }
+    
 })

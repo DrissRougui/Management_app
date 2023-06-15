@@ -56,6 +56,6 @@ class CommandeController extends AbstractController
 
     #[Route('/check' , name: 'commandeCheck')]
     public function check(){
-
+        return new Response("received");
     }
 }
