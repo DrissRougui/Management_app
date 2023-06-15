@@ -1,6 +1,11 @@
+//Fournisseur on change function
 $(".fournisseur").change(function(e,s) {
     line = e.currentTarget.getAttribute("data-line")
-    let id=$(".fournisseur[data-line="+line+"] option:selected").val();
+    id=$(".fournisseur[data-line="+line+"] option:selected").val();
+    idprod=""
+    produitFound={}
+    $(".prix[data-line="+line+"]").text("")
+    //CallBack from ajax 
     function updateProduits(produits) {
         
         $(".produit[data-line="+line+"]").empty()
@@ -12,18 +17,39 @@ $(".fournisseur").change(function(e,s) {
         });
 
         $(".produit[data-line="+line+"]").unbind('change');
+
+        //Produit on change function
         $(".produit[data-line="+line+"]").change((e,s)=>{
+            $(".prix[data-line="+line+"]").text("")
             idprod= $(".produit[data-line="+line+"] option:selected").val();
-            console.log("id fournisseur",id,"liste des produits ",produits);
+           
             produitFound = produits.filter(e => {
                 return e.id == idprod
-              })
+              })[0]
               
               
-           $(".prix[data-line="+line+"]").text(produitFound[0].prixUnitaire + "dt") //.val(produitFound.prixUnitaire)
+            $(".prix[data-line="+line+"]").text(produitFound.prixUnitaire + "dt")
+            
+            
+
            })
-        //    console.log("id after jquery",id);
-      
+        
+
+
+
+
+        //Quantity on change function
+        $(".quantity[data-line="+line+"]").change((e,s)=>{
+
+            amount=parseInt($(".quantity[data-line="+line+"]").val())
+            total=amount*produitFound.prixUnitaire
+            $(".total[data-line="+line+"]").text(total+"dt")
+            
+        })
+
+        $(".produit[data-line="+line+"]").val([])
+        $(".quantity[data-line="+line+"]").val("")
+        $(".total[data-line="+line+"]").text("")
        
       }
     $.ajax({
