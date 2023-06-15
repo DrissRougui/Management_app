@@ -1,17 +1,29 @@
-$(".fournisseur ").change(function(e,s) {
+$(".fournisseur").change(function(e,s) {
     line = e.currentTarget.getAttribute("data-line")
-    let id=$(".fournisseur option:selected").val();
-    console.log(line); 
+    let id=$(".fournisseur[data-line="+line+"] option:selected").val();
     function updateProduits(produits) {
-        console.log(produits);
+        
         $(".produit[data-line="+line+"]").empty()
         produits.forEach((p) => {
             
-            var option = $('<option></option>').attr("value", p.id).text(p.nomProduit);
+            let option = $('<option></option>').attr("value", p.id).text(p.nomProduit);
             $(".produit[data-line="+line+"]").append(option);
             
         });
-        
+
+        $(".produit[data-line="+line+"]").unbind('change');
+        $(".produit[data-line="+line+"]").change((e,s)=>{
+            idprod= $(".produit[data-line="+line+"] option:selected").val();
+            console.log("id fournisseur",id,"liste des produits ",produits);
+            produitFound = produits.filter(e => {
+                return e.id == idprod
+              })
+              
+              
+           $(".prix[data-line="+line+"]").text(produitFound[0].prixUnitaire + "dt") //.val(produitFound.prixUnitaire)
+           })
+        //    console.log("id after jquery",id);
+      
        
       }
     $.ajax({
