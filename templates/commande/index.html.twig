@@ -46,7 +46,7 @@
                                             <div class="col-md-3 col-sm-12 pr-1">
                                                 <div class="form-group">
                                                     <label>Fournisseur</label>
-                                                    <select name="idFournisseur" class="form-control fournisseur" required>
+                                                    <select name="idFournisseur" data-line="{{i}}" class="form-control fournisseur" required>
                                                         <option value="" selected disabled hidden></option>
                                                         {% for f in fournisseurs %}
                                                             <option value="{{f.getId}}" > {{f.getNomFournisseur}}</option>
@@ -57,7 +57,7 @@
                                             <div class="col-md-3 col-sm-12 pr-1">
                                                 <div class="form-group">
                                                     <label>Produit</label>
-                                                    <select name="idProduit" class="form-control" required>
+                                                    <select name="idProduit" data-line="{{i}}" class="form-control produit" required>
                                                         <option value="" selected disabled hidden></option>
                                                         {% for p in produits %}
                                                             <option value="{{p.getId}}" > {{p.getNomProduit}}</option>

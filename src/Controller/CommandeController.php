@@ -8,6 +8,7 @@ use App\Repository\FournisseurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 #[Route('/commande')]
@@ -35,10 +36,22 @@ class CommandeController extends AbstractController
 
     #[Route('/load', name:'loadProduit')]
     public function load(Request $request){
+
+
+        function objectToArray($data){
+            $outputArray['id'] = $data->getId();
+            $outputArray['nomProduit'] = $data->getNomProduit();
+            $outputArray['prixUnitaire'] = $data->getPrixUnitaire();
+            return $outputArray;
+        }
+
         $idFournisseur=$request->get('id');
         $produits=$this->produitRepository->findBy(array('deleted' => null , 'id_fournisseur' => $idFournisseur));
-        
-        return new Response ("loaded");
+        $produitsJSON=array();
+        foreach($produits as $produit){
+            array_push($produitsJSON,objectToArray($produit));
+        }
+        return new JSONResponse ($produitsJSON);
     }
 
     #[Route('/check' , name: 'commandeCheck')]
