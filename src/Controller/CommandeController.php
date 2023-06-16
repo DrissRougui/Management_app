@@ -62,11 +62,12 @@ class CommandeController extends AbstractController
 
     #[Route('/check' , name: 'commandeCheck')]
     public function check(Request $request){
-        
+        $somme=0;
         $panierArray=$request->get('panier');
         foreach($panierArray as $panieElement){
-            
+            $produit=$this->produitRepository->find($panieElement["id"]);
+            $somme+=$produit->getPrixUnitaire()*$panieElement["quantity"];
         }
-        return new Response("le id est : " . $panierArray[0]["id"] ." et la quantité est " . $panierArray[0]["quantity"]);
+        return new Response("la somme est ". $somme);
     }
 }
