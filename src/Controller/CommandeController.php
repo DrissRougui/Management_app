@@ -54,8 +54,19 @@ class CommandeController extends AbstractController
         return new JSONResponse ($produitsJSON);
     }
 
+
+
+
+
+
+
     #[Route('/check' , name: 'commandeCheck')]
-    public function check(){
-        return new Response("received");
+    public function check(Request $request){
+        
+        $panierArray=$request->get('panier');
+        foreach($panierArray as $panieElement){
+            
+        }
+        return new Response("le id est : " . $panierArray[0]["id"] ." et la quantité est " . $panierArray[0]["quantity"]);
     }
 }

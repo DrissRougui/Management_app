@@ -5,7 +5,7 @@ $(".removable").click(function(e) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8000/fournisseur/remove",
-        data: {},
+        data: {id:id},
         success: function (response) {
         alert( response );
         }

@@ -78,10 +78,20 @@ $("#calculer").click(()=>{
     }
     else{
         alert("Commande Valide \nle totale est : " + somme );
+
+        panier=[{
+            "id":3,
+            "quantity":2
+        },
+        {
+            "id":4,
+            "quantity":3
+        }
+    ]
         $.ajax({
             type: "POST",
             url: "http://localhost:8000/commande/check",
-            data: {id:id},
+            data: {panier:panier},
             success: function (response) {
             console.log(response);
             }
