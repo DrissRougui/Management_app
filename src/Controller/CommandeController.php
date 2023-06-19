@@ -28,8 +28,7 @@ class CommandeController extends AbstractController
     {
         $fournisseurs = $this->fournisseurRepository->findBy(array('deleted' => null),array('id' => 'DESC'));
         return $this->render('commande/index.html.twig' , [
-            'fournisseurs' => $fournisseurs,
-            'produits' => []
+            'fournisseurs' => $fournisseurs
         ]);
 
     }
