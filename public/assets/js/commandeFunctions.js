@@ -52,28 +52,6 @@ $(".quantity").change((e,s)=>{
 
 
 $("#calculer").click(()=>{
-    // somme=0
-    // $(".total[data-line]").each((e,s)=>{
-    //     if(s.innerText){
-    //         somme+=parseFloat(s.innerText)
-    //     }
-        
-    // })
-    // if(somme<0){
-    //     alert("Verifier vos données");
-    // }
-    // else{
-    //     alert("Commande Valide \nle totale est : " + somme );
-
-    //     panier=[{
-    //         "id":3,
-    //         "quantity":2
-    //     },
-    //     {
-    //         "id":4,
-    //         "quantity":3
-    //     }
-    // ]
     panier=[]
     $(".produit option:selected").each((e,s)=>{
         line=s.parentElement.getAttribute("data-line")

@@ -56,8 +56,11 @@ class CommandeController extends AbstractController
 
 
 
+    #[Route('/receipt', name:'commandeReceipt')]
+    public function receipt(){
+        return $this->render('commande/receipt.html.twig',[]);
 
-
+    }
 
     #[Route('/check' , name: 'commandeCheck')]
     public function check(Request $request){
@@ -67,6 +70,8 @@ class CommandeController extends AbstractController
             $produit=$this->produitRepository->find($panieElement["id"]);
             $somme+=$produit->getPrixUnitaire()*$panieElement["quantity"];
         }
-        return new Response("la somme est ". $somme);
+        return $this->redirectToRoute('commandeReceipt',[
+            "panier" => $panierArray
+        ]);
     }
 }
