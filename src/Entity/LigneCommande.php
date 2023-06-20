@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\LigneCommandeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: LigneCommandeRepository::class)]
 class LigneCommande
 {

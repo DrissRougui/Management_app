@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use \Datetime;
 use App\Entity\Produit;
+use App\Entity\Commande;
+use App\Entity\LigneCommande;
 use App\Repository\ProduitRepository;
+use App\Repository\CommandeRepository;
+use App\Repository\LigneCommandeRepository;
 use App\Repository\FournisseurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,11 +21,19 @@ class CommandeController extends AbstractController
 {
     private $produitRepository;
     private $fournisseurRepository;
+    private $commandeRepository;
+    private $ligneCommandeRepository;
 
-    public function __construct(ProduitRepository $produitRepository,FournisseurRepository $fournisseurRepository){
+    public function __construct(
+        ProduitRepository $produitRepository,
+        FournisseurRepository $fournisseurRepository,
+        CommandeRepository $commandeRepository,
+        LigneCommandeRepository $ligneCommandeRepository){
 
         $this->produitRepository = $produitRepository;
         $this->fournisseurRepository = $fournisseurRepository;
+        $this->ligneCommandeRepository=$ligneCommandeRepository;
+        $this->commandeRepository=$commandeRepository;
     }
 
     #[Route('/' , name:'commande')]
@@ -59,13 +72,28 @@ class CommandeController extends AbstractController
    
 
     #[Route('/check' , name: 'commandeCheck')]
-    public function check(Request $request){
+    public function check(Request $request,EntityManagerInterface $entityManager){
         $somme=0;
         $panierArray=$request->get('panier');
-        foreach($panierArray as $panieElement){
-            $produit=$this->produitRepository->find($panieElement["id"]);
-            $somme+=$produit->getPrixUnitaire()*$panieElement["quantity"];
+        $commande=new Commande();
+        $commande->setDateCommande(new DateTime());
+        $entityManager->persist($commande);
+        foreach($panierArray as $panierElement){
+            $produit=$this->produitRepository->find($panierElement["id"]);
+            $quantity=$panierElement["quantity"];
+
+            $ligne= new LigneCommande();
+            $ligne->setIdCommande($commande);
+            $ligne->setIdProduit($produit);
+            $ligne->setPrixUnitaire($produit->getPrixUnitaire());
+            $ligne->setQuantity($quantity);
+            $entityManager->persist($ligne);
+
+
+            
         }
+
+        $entityManager->flush();
         return new Response("received");
     }
 }
