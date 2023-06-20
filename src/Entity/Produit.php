@@ -27,12 +27,15 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Fournisseur $id_fournisseur = null;
 
-    #[ORM\OneToMany(mappedBy: 'idProduit', targetEntity: Lignecommande::class)]
-    private Collection $lignecommandes;
+    #[ORM\OneToMany(mappedBy: 'idProduit', targetEntity: LigneCommande::class)]
+    private Collection $ligneCommandes;
+
+    
 
     public function __construct()
     {
         $this->lignecommandes = new ArrayCollection();
+        $this->ligneCommandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,32 +92,34 @@ class Produit
     }
 
     /**
-     * @return Collection<int, Lignecommande>
+     * @return Collection<int, LigneCommande>
      */
-    public function getLignecommandes(): Collection
+    public function getLigneCommandes(): Collection
     {
-        return $this->lignecommandes;
+        return $this->ligneCommandes;
     }
 
-    public function addLignecommande(Lignecommande $lignecommande): self
+    public function addLigneCommande(LigneCommande $ligneCommande): self
     {
-        if (!$this->lignecommandes->contains($lignecommande)) {
-            $this->lignecommandes->add($lignecommande);
-            $lignecommande->setIdProduit($this);
+        if (!$this->ligneCommandes->contains($ligneCommande)) {
+            $this->ligneCommandes->add($ligneCommande);
+            $ligneCommande->setIdProduit($this);
         }
 
         return $this;
     }
 
-    public function removeLignecommande(Lignecommande $lignecommande): self
+    public function removeLigneCommande(LigneCommande $ligneCommande): self
     {
-        if ($this->lignecommandes->removeElement($lignecommande)) {
+        if ($this->ligneCommandes->removeElement($ligneCommande)) {
             // set the owning side to null (unless already changed)
-            if ($lignecommande->getIdProduit() === $this) {
-                $lignecommande->setIdProduit(null);
+            if ($ligneCommande->getIdProduit() === $this) {
+                $ligneCommande->setIdProduit(null);
             }
         }
 
         return $this;
     }
+
+    
 }

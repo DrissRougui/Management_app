@@ -13,10 +13,10 @@ class LigneCommande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'lignecommandes')]
+    #[ORM\ManyToOne(inversedBy: 'ligneCommandes')]
     private ?Commande $idCommande = null;
 
-    #[ORM\ManyToOne(inversedBy: 'lignecommandes')]
+    #[ORM\ManyToOne(inversedBy: 'ligneCommandes')]
     private ?Produit $idProduit = null;
 
     #[ORM\Column]

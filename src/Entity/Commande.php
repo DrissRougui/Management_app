@@ -19,12 +19,12 @@ class Commande
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateCommande = null;
 
-    #[ORM\OneToMany(mappedBy: 'idCommande', targetEntity: Lignecommande::class)]
-    private Collection $lignecommandes;
+    #[ORM\OneToMany(mappedBy: 'idCommande', targetEntity: LigneCommande::class)]
+    private Collection $ligneCommandes;
 
     public function __construct()
     {
-        $this->lignecommandes = new ArrayCollection();
+        $this->ligneCommandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -45,29 +45,29 @@ class Commande
     }
 
     /**
-     * @return Collection<int, Lignecommande>
+     * @return Collection<int, LigneCommande>
      */
-    public function getLignecommandes(): Collection
+    public function getLigneCommandes(): Collection
     {
-        return $this->lignecommandes;
+        return $this->ligneCommandes;
     }
 
-    public function addLignecommande(Lignecommande $lignecommande): self
+    public function addLigneCommande(LigneCommande $ligneCommande): self
     {
-        if (!$this->lignecommandes->contains($lignecommande)) {
-            $this->lignecommandes->add($lignecommande);
-            $lignecommande->setIdCommande($this);
+        if (!$this->ligneCommandes->contains($ligneCommande)) {
+            $this->ligneCommandes->add($ligneCommande);
+            $ligneCommande->setIdCommande($this);
         }
 
         return $this;
     }
 
-    public function removeLignecommande(Lignecommande $lignecommande): self
+    public function removeLigneCommande(LigneCommande $ligneCommande): self
     {
-        if ($this->lignecommandes->removeElement($lignecommande)) {
+        if ($this->ligneCommandes->removeElement($ligneCommande)) {
             // set the owning side to null (unless already changed)
-            if ($lignecommande->getIdCommande() === $this) {
-                $lignecommande->setIdCommande(null);
+            if ($ligneCommande->getIdCommande() === $this) {
+                $ligneCommande->setIdCommande(null);
             }
         }
 

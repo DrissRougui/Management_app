@@ -81,7 +81,7 @@ $("#calculer").click(()=>{
             url: "http://localhost:8000/commande/check",
             data: {panier:panier},
             success: function (response) {
-            console.log(response);
+            
             }
             });
     }}
