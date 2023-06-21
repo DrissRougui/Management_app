@@ -82,7 +82,11 @@ $("#calculer").click(()=>{
             data: {panier:panier},
             success: function (response) {
             if(response){
-                console.log(response);
+                content = $(".remove")[0]
+                content.innerHTML = response
+                 
+                    
+                console.log(content);
                 
             }
             }

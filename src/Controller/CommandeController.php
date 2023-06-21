@@ -78,6 +78,8 @@ class CommandeController extends AbstractController
         $commande=new Commande();
         $commande->setDateCommande(new DateTime());
         $entityManager->persist($commande);
+        $ligneArray=[];
+        $fournisseurArray=[];
         foreach($panierArray as $panierElement){
             $produit=$this->produitRepository->find($panierElement["id"]);
             $quantity=$panierElement["quantity"];
@@ -88,12 +90,18 @@ class CommandeController extends AbstractController
             $ligne->setPrixUnitaire($produit->getPrixUnitaire());
             $ligne->setQuantity($quantity);
             $entityManager->persist($ligne);
-
+            array_push($ligneArray,$ligne);
+            array_push($fournisseurArray,$produit->getIdFournisseur());
 
             
         }
 
+        array_unique($fournisseurArray);
+
         $entityManager->flush();
-        return new Response("received");
+        return $this->render('commande/receipt.html.twig' , [
+            'lignes' => $ligneArray,
+            'fournisseurs' => $fournisseurArray
+        ]);
     }
 }

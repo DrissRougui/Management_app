@@ -1,1 +1,61 @@
-<h1>bonjour</h1>
+
+
+
+
+
+
+
+
+
+<div class="col-md-12">
+                            <div class="card card-plain table-plain-bg">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Commande</h4>
+                                   
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Frounisseur</th>
+                                            <th>Produit</th>
+                                            <th>Quantité</th>
+                                            <th>Totale HT</th>
+                                            <th>Totale TTC</th>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            {% for fournisseur in fournisseurs %}
+                                                {% for ligne in lignes %}
+                                            <tr >
+                                                <td>{{fournisseur.getId}}</td>
+                                                <td>{{fournisseur.getNomFournisseur}}</td>
+                                                <td>{{fournisseur.getAdresse}}</td>
+                                                <td>{{fournisseur.getCodePostal}}</td>
+                                                <td>{{fournisseur.getVille}}</td>
+                                                
+                                               
+                                              
+                                                
+                                                
+                                                
+                                            </tr>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                               
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+             
+            
+            
+
+   
+</div>
+
