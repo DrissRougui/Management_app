@@ -16,23 +16,33 @@
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover">
                                         <thead>
-                                            <th>ID</th>
-                                            <th>Frounisseur</th>
+                                            <th>Fournisseur</th>
                                             <th>Produit</th>
                                             <th>Quantité</th>
                                             <th>Totale HT</th>
-                                            <th>Totale TTC</th>
                                         </thead>
                                         <tbody>
                                         
-                                            {% for fournisseur in fournisseurs %}
-                                                {% for ligne in lignes %}
+                                           
+                                                {% for ele in commandeData %}
+
+                                               
                                             <tr >
-                                                <td>{{fournisseur.getId}}</td>
-                                                <td>{{fournisseur.getNomFournisseur}}</td>
-                                                <td>{{fournisseur.getAdresse}}</td>
-                                                <td>{{fournisseur.getCodePostal}}</td>
-                                                <td>{{fournisseur.getVille}}</td>
+                                               
+                                                
+                                                <td>{{ele.fournisseur.getNomFournisseur}}</td>
+                                            </tr>
+
+                                                {% for ligne in ele.lignes %}
+
+                                            <tr>  
+
+                    
+                                                <td></td>
+                                                <td>{{ligne.getIdProduit.getNomProduit}}</td>
+                                                <td>{{ligne.getQuantity}}</td>
+                                                <td>{{ligne.getQuantity * ligne.getPrixUnitaire}}</td>
+                                                
                                                 
                                                
                                               
@@ -41,7 +51,9 @@
                                                 
                                             </tr>
                                                 {% endfor %}
-                                            {% endfor %}
+                                               
+                                                {% endfor %}
+                                            
                                         </tbody>
                                     </table>
                                     

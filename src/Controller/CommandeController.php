@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use \Datetime;
+use \stdClass;
 use App\Entity\Produit;
 use App\Entity\Commande;
 use App\Entity\LigneCommande;
@@ -80,6 +81,7 @@ class CommandeController extends AbstractController
         $entityManager->persist($commande);
         $ligneArray=[];
         $fournisseurArray=[];
+        
         foreach($panierArray as $panierElement){
             $produit=$this->produitRepository->find($panierElement["id"]);
             $quantity=$panierElement["quantity"];
@@ -96,12 +98,32 @@ class CommandeController extends AbstractController
             
         }
 
-        array_unique($fournisseurArray);
+        $fournisseurArray=array_unique($fournisseurArray);
+        $outputArray=[];
+        
+
+        //format outputArray
+        foreach($fournisseurArray as $f){
+
+            $outputArrayElement=new stdClass();
+            $outputArrayElement->fournisseur=$f;
+            $lignesParFournisseur=[];
+            foreach($ligneArray as $l){               
+                if ($f->getId()==$l->getIdProduit()->getIdFournisseur()->getId()){
+                    array_push($lignesParFournisseur,$l);
+                }
+            }
+            $outputArrayElement->lignes=$lignesParFournisseur;
+            array_push($outputArray,$outputArrayElement);
+        }
+
+        
+        
 
         $entityManager->flush();
         return $this->render('commande/receipt.html.twig' , [
-            'lignes' => $ligneArray,
-            'fournisseurs' => $fournisseurArray
+            'commandeData' => $outputArray
+            
         ]);
     }
 }

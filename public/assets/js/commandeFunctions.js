@@ -52,6 +52,7 @@ $(".quantity").change((e,s)=>{
 
 
 $("#calculer").click(()=>{
+    
     panier=[]
     $(".produit option:selected").each((e,s)=>{
         line=s.parentElement.getAttribute("data-line")
@@ -84,9 +85,9 @@ $("#calculer").click(()=>{
             if(response){
                 content = $(".remove")[0]
                 content.innerHTML = response
-                 
+                
                     
-                console.log(content);
+                
                 
             }
             }
