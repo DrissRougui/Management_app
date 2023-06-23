@@ -19,18 +19,19 @@
                                         <thead>
                                             <th>ID</th>
                                             <th>DateCommande</th>
-                                            <th></th>
+                                            <th>Nombre de Ligne </th>
                                             <th></th>
                                             <th></th>
                                         </thead>
                                         <tbody>
-                                        
+
+                                            
                                             {% for commande in commandes %}
                                             <tr >
                                                 <td>{{commande.getId}}</td>
                                                 <td>{{commande.getDateCommande|date('d/m/y')}}</td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{commande.countLignes}}</td>
+                                                <td><a href="{{path('commandeDetails',{'id' : commande.getId} ) }}"> <i class="nc-icon nc-bullet-list-67 alert alert-primary"></i></a></td>
                                                 <td></td>
                                                 
                                                 

@@ -40,6 +40,10 @@ class CommandeController extends AbstractController
     #[Route('/', name: 'commande')]
     public function commandList(){
         $commandes = $this->commandeRepository->findAll();
+
+        foreach($commandes as $commande){
+            $commande->countLignes=$commande->getLigneCommandesCount();
+        }
         return $this->render('commande/index.html.twig',[
             'commandes' => $commandes
         ]);
@@ -134,5 +138,12 @@ class CommandeController extends AbstractController
             'commandeData' => $outputArray
             
         ]);
+    }
+
+
+
+    #[Route('/details/{id}', name:'commandeDetails')]
+    public function details($id){
+        
     }
 }

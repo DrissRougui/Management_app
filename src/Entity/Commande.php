@@ -52,6 +52,10 @@ class Commande
         return $this->ligneCommandes;
     }
 
+    public function getLigneCommandesCount(){
+        return count($this->ligneCommandes);
+    }
+
     public function addLigneCommande(LigneCommande $ligneCommande): self
     {
         if (!$this->ligneCommandes->contains($ligneCommande)) {
