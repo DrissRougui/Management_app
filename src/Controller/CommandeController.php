@@ -37,11 +37,20 @@ class CommandeController extends AbstractController
         $this->commandeRepository=$commandeRepository;
     }
 
-    #[Route('/' , name:'commande')]
+    #[Route('/', name: 'commande')]
+    public function commandList(){
+        $commandes = $this->commandeRepository->findAll();
+        return $this->render('commande/index.html.twig',[
+            'commandes' => $commandes
+        ]);
+    }
+
+
+    #[Route('/add' , name:'commandeAdd')]
     public function index():Response
     {
         $fournisseurs = $this->fournisseurRepository->findBy(array('deleted' => null),array('id' => 'DESC'));
-        return $this->render('commande/index.html.twig' , [
+        return $this->render('commande/add.html.twig' , [
             'fournisseurs' => $fournisseurs
         ]);
 

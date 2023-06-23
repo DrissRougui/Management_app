@@ -1,121 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une Commande{% endblock %}
+{% block title %}Liste des Commandes{% endblock %}
 
 {% block body %}
-<div class="row">
-    <div class="col-md-12">
-        <div class="card remove">
-		
-           
-			
-            <div class="content">
-			
-                <form  method="post">
-					
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <p id="controlesaisie" style="color:red;display:none"></p>
-                            </div>
-                        </div>
-                    </div>
-					
-                    
-
-                    
 
 
 
 
-						<div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Ajouter Commande</h4>
+<div class="col-md-12">
+                            <div class="card card-plain table-plain-bg">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Liste des commandes</h4>
+                                   
                                 </div>
-                                <div class="card-body">
-                                    <form>
+                                <div class="card-body table-full-width table-responsive">
+                                <a class="btn btn-info btn-fill pull-right mr-3" href="{{ path('commandeAdd')}}">Ajouter une Commande</a>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>DateCommande</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
                                         
-                                        {% for i in 1..1 %}
-
-                                        
-                                        <div class="row">
-                                            <div class="col-md-3 col-sm-12 pr-1">
-                                                <div class="form-group">
-                                                    <label>Fournisseur</label>
-                                                    <select name="idFournisseur" data-line="{{i}}" class="form-control fournisseur" required>
-                                                        <option value="" selected disabled hidden></option>
-                                                        {% for f in fournisseurs %}
-                                                            <option value="{{f.getId}}" > {{f.getNomFournisseur}}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-md-3 col-sm-12 pr-1">
-                                                <div class="form-group">
-                                                    <label>Produit</label>
-                                                    <select name="idProduit" data-line="{{i}}" class="form-control produit" required>
-                                                        <option value="" selected disabled hidden></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-12 pr-1">
-                                                <div class="form-group">
-                                                    <label>prixUnitaire</label>
-                                                    <h4 data-line="{{i}}" class="from-control prix"></h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2     col-sm-12 pr-1">
-                                                <div class="form-group">
-                                                    <label>Quantité</label>
-                                                    <input type="text" name="prixUnitaire" data-line="{{i}}" class="form-control quantity" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-12 pr-1">
-                                                <div class="form-group" >
-                                                    <label>Prix</label>
-                                                    <h4 class="total" data-line="{{i}}"></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {% endfor %}
-                                        
-                                        
-                                        {# <button type="submit" class="btn btn-info btn-fill pull-right">Calculer le totale</button> #}
-                                        <button id="calculer" class="btn btn-info btn-fill pull-right">Passer Commande</button>
-                                        
-                                        <div class="clearfix"></div>
-                                    </form>
+                                            {% for commande in commandes %}
+                                            <tr >
+                                                <td>{{commande.getId}}</td>
+                                                <td>{{commande.getDateCommande|date('d/m/y')}}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            </tr>
+                               
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    
                                 </div>
+                               
                             </div>
+                           
                         </div>
-                        
                     </div>
                 </div>
-            </div>
-						
-						
-					
+             
+            
+            
 
-
-
-					
-					
-					
-                    
-					
-                    
-					<div class="clearfix"></div>
-                </form>
-				
-            </div>
-        </div>
-    </div>
-	
-	
- <script src="{{asset('/assets/js/commandeFunctions.js')}}"></script> 
-    {% endblock %}
+    
+</div>
+{% endblock %}
