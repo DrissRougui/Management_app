@@ -144,6 +144,38 @@ class CommandeController extends AbstractController
 
     #[Route('/details/{id}', name:'commandeDetails')]
     public function details($id){
-        
+        $commande=$this->commandeRepository->find($id);
+        $lignes=$commande->getLigneCommandes()->toArray();
+        $fournisseurArray=[];
+        $outputArray=[];
+
+        foreach($lignes as $ligne){
+            array_push($fournisseurArray,$ligne->getIdProduit()->getIdFournisseur());
+
+        }
+
+        $fournisseurArray=array_unique($fournisseurArray);
+
+
+
+        //Format outputArray
+        foreach($fournisseurArray as $f){
+            $outputArrayElement=new stdClass();
+            $outputArrayElement->fournisseur=$f;
+            $lignesParFournisseur=[];
+            foreach($lignes as $l){               
+                if ($f->getId()==$l->getIdProduit()->getIdFournisseur()->getId()){
+                    array_push($lignesParFournisseur,$l);
+                }
+            }
+            $outputArrayElement->lignes=$lignesParFournisseur;
+            array_push($outputArray,$outputArrayElement);
+
+        }
+
+
+        return $this->render('commande/details.html.twig' , [
+            'commandeData' => $outputArray
+        ]);
     }
 }
